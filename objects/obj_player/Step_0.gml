@@ -156,7 +156,7 @@ switch (playerState) {
 			x+=x_speed;
 		}
 		if(keyboard_check(vk_space) || collision_rectangle(x-5, y+3, x+5 ,y-2, self ,false, false)){
-			playerState = playerStates.jump;
+			playerState = playerStates.jump;//
 		}
 	break;
 	#endregion
