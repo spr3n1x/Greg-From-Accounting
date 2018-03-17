@@ -71,6 +71,14 @@
             }
         },
         {
+            "Key": "3ef6d908-55b8-4327-8328-32ae2ba2d663",
+            "Value": {
+                "id": "584e043d-ed1a-426f-a91f-fe59f776970a",
+                "resourcePath": "scripts\\bounce\\bounce.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "40df3e23-3816-4a72-972e-9c1ba587dbd3",
             "Value": {
                 "id": "0d06407c-9819-4d0d-ad56-5b7f7cb69b89",
@@ -249,7 +257,8 @@
     ],
     "script_order": [
         "2f237a70-3ca5-43af-a091-32d7fe279a55",
-        "a49d5c82-c184-4eca-b4bb-bca36903b269"
+        "a49d5c82-c184-4eca-b4bb-bca36903b269",
+        "3ef6d908-55b8-4327-8328-32ae2ba2d663"
     ],
     "tutorial": ""
 }

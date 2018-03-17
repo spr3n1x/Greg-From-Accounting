@@ -1,0 +1,3 @@
+/// @desc
+
+playerState = playerStates.idle;
