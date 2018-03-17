@@ -17,17 +17,26 @@ switch (playerState) {
 			case 1:
 				sprite_index = spr_player2hit_idle;
 				image_index = 0;
-				image_index = 2;
+				image_speed = 2;
 			break;
 		}
 		if(keyboard_check(ord("D"))||keyboard_check(ord("A"))){
 			playerState = playerStates.walk;
+			if(keyboard_check(vk_shift)){
+				playerState = playerStates.run;
+			}
+		}
+		if(keyboard_check(ord("S"))){
+			playerState = playerStates.crouch;
+		}
+		if(keyboard_check(vk_space)){
+			playerState = playerStates.jump;
 		}
 		break;
 	#endregion
 	case playerStates.walk:
 	#region walk
-		sprite_index = spr_player_idle;
+	sprite_index = spr_player_idle;
 		if(keyboard_check(ord("D"))){
 			x_speed+=acceleration;
 			if(x_speed > max_speed){
@@ -58,6 +67,9 @@ switch (playerState) {
 			playerState = playerStates.idle;
 		}else{
 			x+=x_speed;
+		}
+		if(keyboard_check(ord("S"))){
+			playerState = playerStates.crouch;
 		}
 		if(keyboard_check(vk_space)){
 			playerState = playerStates.jump;
@@ -97,6 +109,9 @@ switch (playerState) {
 			playerState = playerStates.idle;
 		}else{
 			x+=x_speed;
+		}
+		if(keyboard_check(ord("S"))){
+			playerState = playerStates.crouch;
 		}
 		if(keyboard_check(vk_space)){
 			playerState = playerStates.jump;
