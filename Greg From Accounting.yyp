@@ -111,10 +111,17 @@
             }
         },
         {
+<<<<<<< HEAD
             "Key": "63662fa0-2e31-47e4-bed1-0d3aeeb31693",
             "Value": {
                 "id": "97f62c7a-9db2-4809-9c9d-346d0e80f4df",
                 "resourcePath": "sprites\\sprite7\\sprite7.yy",
+=======
+            "Key": "6283b6a1-f440-468c-a69d-a3376ba56281",
+            "Value": {
+                "id": "d5e63319-2dd3-4fc4-a4c5-78b17e72dc5f",
+                "resourcePath": "sprites\\spr_player_run\\spr_player_run.yy",
+>>>>>>> e67bcd6538c7e3fdc12df5650048000ae7765b42
                 "resourceType": "GMSprite"
             }
         },
