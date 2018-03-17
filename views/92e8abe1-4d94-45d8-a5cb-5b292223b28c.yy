@@ -4,7 +4,6 @@
     "mvc": "1.1",
     "name": "92e8abe1-4d94-45d8-a5cb-5b292223b28c",
     "children": [
-        "6b7722dc-60a1-4219-8796-cfcb3089d3cf",
         "e981af86-4138-4f31-8a7b-ee552f2ab743",
         "206f61ed-9815-42c4-81ba-3192dd4ed66d",
         "ccf1e8dc-50da-4633-b1fd-858b6d0a4e67",
@@ -18,7 +17,9 @@
         "40df3e23-3816-4a72-972e-9c1ba587dbd3",
         "eef2bf76-0bbc-4f68-88a9-20a74da96588",
         "2a190c26-2dc8-4ec1-ba6e-6f614b7b4185",
-        "5109e3ae-3ba2-42c3-ba8a-4adc533063dd"
+        "5109e3ae-3ba2-42c3-ba8a-4adc533063dd",
+        "34ddfb60-60e0-4915-b6c6-2f44c1214d21",
+        "e0618988-7374-4b6f-b619-1daa18d4b3b4"
     ],
     "filterType": "root",
     "folderName": "Default",
