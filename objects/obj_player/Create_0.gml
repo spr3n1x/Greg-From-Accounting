@@ -15,7 +15,7 @@ keyboard_set_map(ord("D"), vk_right);
 
 
 invulnerable = false;
-invulnerabilityTime = 1;
+invulnerabilityTime = 1.5;
 invulnerabilityTimer = 0;
 pulseDirection = false;
 hp = 3;

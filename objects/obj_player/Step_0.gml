@@ -112,7 +112,7 @@ if !place_meeting(x, y+1, obj_platform) {
 	if keyboard_check_pressed(vk_space) {
 		vspeed_ = jump_height_;
 		if keyboard_check(vk_down){
-		vspeed_ += jump_height_/2;
+		vspeed_ += int64(jump_height_/2);
 		}
 	}
 }
@@ -166,3 +166,7 @@ if(invulnerable){
 		show_debug_message("can be hit");
 	}
 }
+if(hp == 0){
+	room_restart();
+}
+
