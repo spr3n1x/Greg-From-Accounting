@@ -1,13 +1,21 @@
-/// @desc
 
-playerState = playerStates.idle;
+/// @description Create the variables
+hspeed_ = 0;
+max_hspeed_ = 4;
+vspeed_ = 0;
+gravity_ = .5;
+acceleration_ = 1;
+friction_ = .5;
+jump_height_ = -10;
+// Map the keys
+keyboard_set_map(ord("W"), vk_up);
+keyboard_set_map(ord("A"), vk_left);
+keyboard_set_map(ord("S"), vk_down);
+keyboard_set_map(ord("D"), vk_right);
 
+
+invulnerable = false;
+invulnerabilityTime = 1;
+invulnerabilityTimer = 0;
+pulseDirection = false;
 hp = 3;
-x_speed = 0;
-acceleration = 1;
-max_speed = 5;
-pFriction = 0.2;
-y_speed = 0;
-jumpHeight = 2;
-jump = true;
-jGravity = 0.1;

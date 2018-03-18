@@ -1,204 +1,161 @@
-/// @desc
-
-switch (playerState) {
-	case playerStates.idle:
-	#region idle
-	//checking HitPoints
-	// changing sprite index and speed based on how many hits you have taken
+/// @description Player Movement
+var hinput = keyboard_check(vk_right) - keyboard_check(vk_left);
 		switch (hp) {
 			case 3:
-				sprite_index = spr_player_idle;
-				image_index = 0;
-				image_speed = 1;
-			break;
+				if(hspeed_ == 0){
+					sprite_index = spr_player_idle;
+					if(keyboard_check(vk_down)){
+						sprite_index = spr_player_crouch_run;
+						image_speed = 0;
+					}else{
+						image_speed = 1;
+					}
+				}else if(keyboard_check(vk_shift)){
+					sprite_index = spr_player_walk;
+					if(keyboard_check(vk_down)){
+					sprite_index = spr_player_crouch_run;
+					image_speed = 1;
+					}else{
+					image_speed = 2;
+					}
+				}else{
+					sprite_index = spr_player_walk;
+					if(keyboard_check(vk_down)){
+					sprite_index = spr_player_crouch_run;
+					image_speed = 1;
+					}else{
+					image_speed = 1;
+					}
+				}
+		
+				break;
 			case 2:
-				sprite_index = spr_player1hit_idle;
-				image_index = 0;
-				image_speed = 1.5;
-			break;
+				if(hspeed_ == 0){
+					sprite_index = spr_player1hit_idle;
+					if(keyboard_check(vk_down)){
+						sprite_index = spr_player1hit_crouch_run;
+						image_speed = 0;
+					}else{
+						image_speed = 1;
+					}
+				}else if(keyboard_check(vk_shift)){
+					sprite_index = spr_player1hit_walk;
+					if(keyboard_check(vk_down)){
+					sprite_index = spr_player1hit_crouch_run;
+					image_speed = 1;
+					}else{
+					image_speed = 2;
+					}
+				}else{
+					sprite_index = spr_player1hit_walk;
+					if(keyboard_check(vk_down)){
+					sprite_index = spr_player1hit_crouch_run;
+					image_speed = 1;
+					}else{
+					image_speed = 1;
+					}
+				}
+				break;
 			case 1:
-				sprite_index = spr_player2hit_idle;
-				image_index = 0;
-				image_speed = 2;
+				if(hspeed_ == 0){
+					sprite_index = spr_player2hit_idle;
+					if(keyboard_check(vk_down)){
+						sprite_index = spr_player2hit_crouch_run;
+						image_speed = 0;
+					}else{
+						image_speed = 1;
+					}
+				}else if(keyboard_check(vk_shift)){
+					sprite_index = spr_player2hit_walk;
+					if(keyboard_check(vk_down)){
+					sprite_index = spr_player2hit_crouch_run;
+					image_speed = 1;
+					}else{
+					image_speed = 2;
+					}
+				}else{
+					sprite_index = spr_player2hit_walk;
+					if(keyboard_check(vk_down)){
+					sprite_index = spr_player2hit_crouch_run;
+					image_speed = 1;
+					}else{
+					image_speed = 1;
+					}
+				}
+				break;
+		}
+if hinput != 0 {
+	image_xscale = sign(hinput);
+	if(keyboard_check(vk_down)){
+		hspeed_ += hinput*acceleration_/2;
+		hspeed_ = clamp(hspeed_, -max_hspeed_/2, max_hspeed_/2);
+	}else if(keyboard_check(vk_shift)){
+		hspeed_ += hinput*acceleration_*2;
+		hspeed_ = clamp(hspeed_, -max_hspeed_*2, max_hspeed_*2);
+	}else{
+		hspeed_ += hinput*acceleration_;
+		hspeed_ = clamp(hspeed_, -max_hspeed_, max_hspeed_);
+	}
+} else {
+	if(keyboard_check(vk_shift)){
+		hspeed_ = lerp(hspeed_, 0, friction_);
+	}else{
+		hspeed_ = lerp(hspeed_, 0, friction_);
+	}
+}
+
+if !place_meeting(x, y+1, obj_platform) {
+	vspeed_ += gravity_;
+} else {
+	if keyboard_check_pressed(vk_space) {
+		vspeed_ = jump_height_;
+		if keyboard_check(vk_down){
+		vspeed_ += jump_height_/2;
+		}
+	}
+}
+
+if(place_meeting(x+hspeed_, y, obj_platform)){
+	for(var i = 0;i <= abs(hspeed_);i++) {
+		if(!place_meeting(x+sign(hspeed_), y, obj_platform)){
+			x += sign(hspeed_);
+		}else{
 			break;
 		}
-		//checking if the left or right keys are pressed
-		if(keyboard_check(ord("D"))||keyboard_check(ord("A"))){
-			playerState = playerStates.walk;
-			//checking if you press the run key
-			if(keyboard_check(vk_shift)){
-				playerState = playerStates.run;
-			}
-		}
-		//check if you pressed the crouch button
-		if(keyboard_check(ord("S"))){
-			playerState = playerStates.crouch;
-		}
-		//check if you have pressed the jump button
-		if(keyboard_check(vk_space)){
-			playerState = playerStates.jump;
-		}
-		break;
-	#endregion
-	case playerStates.walk:
-	#region walk
-	//set the sprite index to the walk animation
-	sprite_index = spr_player_idle;
-		//check if the right key is pressed
-		if(keyboard_check(ord("D"))){
-			x_speed+=acceleration;
-			if(x_speed > max_speed){
-				x_speed = max_speed;
-			}
-		}
-		//check if the left key is pressed
-		if(keyboard_check(ord("A"))){
-			x_speed-=acceleration;
-			if(x_speed < -max_speed){
-				x_speed = -max_speed;
-			}
-		}
-		//check if you are moving right
-		if(x_speed > 0){
-			image_xscale = 1;
-		}//check if you are moving left
-		else if (x_speed < 0){
-			image_xscale = -1;
-		}
-		//check if you are pressing the run key
-		if(keyboard_check(vk_shift)){
-			playerState = playerStates.run;
-		}
-		//checking if you are not pressing left or right and you are moving right
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed > 0){
-			x_speed -= pFriction;
-		}
-		//checking if you are not pressing left or right and you are moving right
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed < 0){
-			x_speed += pFriction;
-		}
-		//checking if you are not pressing left or right and you are not moving
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed == 0){
-			playerState = playerStates.idle;
-		}
-		//add the speed to the players x value
-		else{
-			x+=x_speed;
-		}
-		//check if you are pressing the crouch button
-		if(keyboard_check(ord("S"))){
-			playerState = playerStates.crouch;
-		}
-		//check if you are pressing the jump button
-		if(keyboard_check(vk_space)){
-			playerState = playerStates.jump;
-		}
-		break;
-	#endregion
-	case playerStates.run:
-	#region run
-		//check if the right key is pressed
-		if(keyboard_check(ord("D"))){
-			x_speed+=acceleration*1.5;
-			if(x_speed > max_speed*2){
-				x_speed = max_speed*2;
-			}
-		}
-		//check if the left key is pressed
-		if(keyboard_check(ord("A"))){
-			x_speed-=acceleration*1.5;
-			if(x_speed < -max_speed*2){
-				x_speed = -max_speed*2;
-			}
-		}
-		//check if you are moving right
-		if(x_speed > 0){
-			image_xscale = 1;
-		}//check if you are moving left
-		else if (x_speed < 0){
-			image_xscale = -1;
-		}
-		//check if the shift key is not pressed down
-		if(!keyboard_check(vk_shift)){
-			playerState = playerStates.walk;
-		}
-		//checking if you are not pressing left or right and you are moving right
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed > 0){
-			x_speed -= pFriction;
-		}
-		//checking if you are not pressing left or right and you are moving left
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed < 0){
-			x_speed += pFriction;
-		}
-		//checking if you are not pressing left or right and you are not moving
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed == 0){
-			playerState = playerStates.idle;
-		}//add the speed to the players x value
-		else{
-			x+=x_speed;
-		}
-		//check if you are pressing the crouch button
-		if(keyboard_check(ord("S"))){
-			playerState = playerStates.crouch;
-		}
-		//check if you are pressing the jump button
-		if(keyboard_check(vk_space)){
-			playerState = playerStates.jump;
-		}
-		
-		break;
-	#endregion
-	case playerStates.jump:
-	#region jump
-	if(jump){
-		jump = false;
-		y_speed = -3;
-	}else{
-		y_speed+=jGravity;
 	}
-	y+=y_speed;
-		
-		if(keyboard_check(vk_shift)){
-			//playerState = playerStates.run;
-			if(keyboard_check(ord("D"))){
-			x_speed+=acceleration*1.5;
-			if(x_speed > max_speed*2){
-				x_speed = max_speed*2;
-			}
+	hspeed_ = 0;
+}
+x += hspeed_;
+
+if place_meeting(x, y+vspeed_, obj_platform) {
+	while !place_meeting(x, y+sign(vspeed_), obj_platform) {
+		y += sign(vspeed_);
+	}
+	vspeed_ = 0;
+}
+y += vspeed_;
+
+
+
+if(invulnerable){
+	if(pulseDirection){
+		image_alpha -= 0.075
+		if(image_alpha <= 0.3){
+			pulseDirection = false;
 		}
-		if(keyboard_check(ord("A"))){
-			x_speed-=acceleration*1.5;
-			if(x_speed < -max_speed*2){
-				x_speed = -max_speed*2;
-			}
+	}else if(!pulseDirection){
+		image_alpha += 0.075
+		if(image_alpha >= 1){
+			pulseDirection = true;
 		}
-		}else{
-			//playerState = playerStates.walk;
-			if(keyboard_check(ord("D"))){
-			x_speed+=acceleration;
-			if(x_speed > max_speed){
-				x_speed = max_speed;
-			}
-		}
-		if(keyboard_check(ord("A"))){
-			x_speed-=acceleration;
-			if(x_speed < -max_speed){
-				x_speed = -max_speed;
-			}
-		}
-		}
-		if(x_speed > 0){
-			image_xscale = 1;
-		}else if (x_speed < 0){
-			image_xscale = -1;
-		}
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed > 0){
-			x_speed -= pFriction;
-		}
-		if(!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && x_speed < 0){
-			x_speed += pFriction;
-		}
-		x+=x_speed;
-	break;
-	#endregion
+	}
+	if (invulnerabilityTimer < room_speed*invulnerabilityTime){
+		show_debug_message("test");
+		invulnerabilityTimer++;
+	} else{
+		image_alpha = 1;
+		invulnerable = false;
+		invulnerabilityTimer = 0;
+		show_debug_message("can be hit");
+	}
 }
