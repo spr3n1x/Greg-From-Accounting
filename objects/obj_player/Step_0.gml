@@ -1,5 +1,24 @@
 /// @description Player Movement
 var hinput = keyboard_check(vk_right) - keyboard_check(vk_left);
+		if hinput != 0 {
+	image_xscale = sign(hinput);
+	if(keyboard_check(vk_down)){
+		hspeed_ += hinput*acceleration_/2;
+		hspeed_ = clamp(hspeed_, -max_hspeed_/2, max_hspeed_/2);
+	}else if(keyboard_check(vk_shift)){
+		hspeed_ += hinput*acceleration_*2;
+		hspeed_ = clamp(hspeed_, -max_hspeed_*2, max_hspeed_*2);
+	}else{
+		hspeed_ += hinput*acceleration_;
+		hspeed_ = clamp(hspeed_, -max_hspeed_, max_hspeed_);
+	}
+} else {
+	if(keyboard_check(vk_shift)){
+		hspeed_ = lerp(hspeed_, 0, friction_);
+	}else{
+		hspeed_ = lerp(hspeed_, 0, friction_);
+	}
+}
 		switch (hp) {
 			case 3:
 				if(hspeed_ == 0){
@@ -84,25 +103,7 @@ var hinput = keyboard_check(vk_right) - keyboard_check(vk_left);
 				}
 				break;
 		}
-if hinput != 0 {
-	image_xscale = sign(hinput);
-	if(keyboard_check(vk_down)){
-		hspeed_ += hinput*acceleration_/2;
-		hspeed_ = clamp(hspeed_, -max_hspeed_/2, max_hspeed_/2);
-	}else if(keyboard_check(vk_shift)){
-		hspeed_ += hinput*acceleration_*2;
-		hspeed_ = clamp(hspeed_, -max_hspeed_*2, max_hspeed_*2);
-	}else{
-		hspeed_ += hinput*acceleration_;
-		hspeed_ = clamp(hspeed_, -max_hspeed_, max_hspeed_);
-	}
-} else {
-	if(keyboard_check(vk_shift)){
-		hspeed_ = lerp(hspeed_, 0, friction_);
-	}else{
-		hspeed_ = lerp(hspeed_, 0, friction_);
-	}
-}
+
 
 if !place_meeting(x, y+1, obj_platform) {
 	vspeed_ += gravity_;
@@ -114,9 +115,10 @@ if !place_meeting(x, y+1, obj_platform) {
 		}
 	}
 }
-
+show_debug_message(hspeed_);
 if(place_meeting(x+hspeed_, y, obj_platform)){
-	for(var i = 0;i <= abs(hspeed_);i++) {
+	if(hspeed_ != 0){
+	for(var i = 0;i <= abs(hspeed_);i++){
 		if(!place_meeting(x+sign(hspeed_), y, obj_platform)){
 			x += sign(hspeed_);
 		}else{
@@ -124,6 +126,7 @@ if(place_meeting(x+hspeed_, y, obj_platform)){
 		}
 	}
 	hspeed_ = 0;
+	}
 }
 x += hspeed_;
 
