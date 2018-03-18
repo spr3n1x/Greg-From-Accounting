@@ -47,6 +47,14 @@
             }
         },
         {
+            "Key": "0a1b7180-7d3f-4132-849a-a09aa1ff11ad",
+            "Value": {
+                "id": "0931dda1-1fc4-4984-b6f4-9e44c2bb7459",
+                "resourcePath": "sprites\\spr_crouch_run\\spr_crouch_run.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "0b78fb91-acc4-46dc-b9d0-4284fcf74111",
             "Value": {
                 "id": "7f09af8c-0201-4586-9cf1-437b38b0668b",
@@ -82,7 +90,7 @@
             "Key": "252445a2-ee92-43d2-9616-7052e9c05bdc",
             "Value": {
                 "id": "4a999e7b-4782-4d2b-ac74-770ed0300d50",
-                "resourcePath": "sprites\\spr_player_crouch_idle1\\spr_player_crouch_idle1.yy",
+                "resourcePath": "sprites\\spr_player_walk_test\\spr_player_walk_test.yy",
                 "resourceType": "GMSprite"
             }
         },
