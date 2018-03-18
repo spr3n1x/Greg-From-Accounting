@@ -2,7 +2,7 @@
     "id": "7469ba7d-ed8d-4e29-94f1-5da8d4f4342a",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "spr_player_crouch_idle",
+    "name": "spr_player_crouch_test",
     "For3D": false,
     "HTile": false,
     "VTile": false,
