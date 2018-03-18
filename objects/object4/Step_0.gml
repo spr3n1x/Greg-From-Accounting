@@ -11,6 +11,9 @@ if(distance_to_object(obj_player) < 200){
 		x_speed = lengthdir_x(max_speed, _direction);
 		y_speed = lengthdir_y(max_speed, _direction);
 	}
+}else{
+	x_speed = 0;
+	y_speed = 0;
 }
 if(place_meeting(x+x_speed, y, obj_platform)){
 	if(x_speed != 0){
