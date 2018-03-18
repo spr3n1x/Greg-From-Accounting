@@ -231,6 +231,14 @@
             }
         },
         {
+            "Key": "8e741819-e1bd-408a-b96b-09cf4b259921",
+            "Value": {
+                "id": "2f8d42a8-c162-4fa1-b56c-f7a0cb63d070",
+                "resourcePath": "sprites\\beetle\\beetle.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "92dbf4cf-e723-4827-aeeb-b144b902c8a8",
             "Value": {
                 "id": "08c621c0-ea2e-4595-a44a-f142a4968746",
@@ -359,6 +367,14 @@
             }
         },
         {
+            "Key": "ce37614b-58b8-468f-b4df-3b68a22b3393",
+            "Value": {
+                "id": "adc9b196-7be6-4520-abe6-96124efb5577",
+                "resourcePath": "sprites\\dragonfly\\dragonfly.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "d982344e-37af-462d-9e32-8ee8bad197f0",
             "Value": {
                 "id": "26c50ea8-5746-4c07-8f00-11db8ee22c2d",
@@ -404,6 +420,14 @@
                 "id": "4ba84c7d-24b7-459b-97a4-033ea3f8fae2",
                 "resourcePath": "rooms\\rm_main\\rm_main.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "fa0a3bea-2991-442c-914b-fcf6dcdcb864",
+            "Value": {
+                "id": "62cb56cb-a772-4a4d-80f0-1575122ac089",
+                "resourcePath": "objects\\object4\\object4.yy",
+                "resourceType": "GMObject"
             }
         }
     ],

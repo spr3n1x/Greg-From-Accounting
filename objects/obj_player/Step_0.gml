@@ -19,6 +19,7 @@ var hinput = keyboard_check(vk_right) - keyboard_check(vk_left);
 		hspeed_ = lerp(hspeed_, 0, friction_);
 	}
 }
+
 		switch (hp) {
 			case 3:
 				if(hspeed_ == 0){
@@ -133,6 +134,9 @@ x += hspeed_;
 if place_meeting(x, y+vspeed_, obj_platform) {
 	while !place_meeting(x, y+sign(vspeed_), obj_platform) {
 		y += sign(vspeed_);
+	}
+	if(sign(vspeed_) < 0){
+		y -= sign(vspeed_);
 	}
 	vspeed_ = 0;
 }
